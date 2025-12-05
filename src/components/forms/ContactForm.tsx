@@ -29,11 +29,11 @@ interface ContactFormProps {
 }
 
 export function ContactForm({
-  formspreeId = "YOUR_FORMSPREE_ID", // Replace with actual Formspree ID
+  formspreeId = process.env.NEXT_PUBLIC_FORMSPREE_ID || "",
   className,
 }: ContactFormProps) {
   const [submitStatus, setSubmitStatus] = useState<
-    "idle" | "loading" | "success" | "error"
+    "idle" | "loading" | "success" | "error" | "rateLimit"
   >("idle");
 
   const {
@@ -53,13 +53,19 @@ export function ContactForm({
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          Accept: "application/json",
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify({
+          ...data,
+          _subject: `New Lead: ${data.service} - ${data.name}`,
+        }),
       });
 
       if (response.ok) {
         setSubmitStatus("success");
         reset();
+      } else if (response.status === 429) {
+        setSubmitStatus("rateLimit");
       } else {
         throw new Error("Form submission failed");
       }
@@ -104,6 +110,29 @@ export function ContactForm({
           </p>
         </div>
       )}
+
+      {/* Rate limit banner */}
+      {submitStatus === "rateLimit" && (
+        <div className="flex items-center gap-3 p-4 bg-yellow-50 border border-yellow-200 rounded-lg text-yellow-800">
+          <AlertCircle className="w-5 h-5 flex-shrink-0" />
+          <p>
+            Too many submissions. Please wait a moment and try again, or call us
+            at{" "}
+            <a href="tel:+18327180431" className="font-bold underline">
+              832.718.0431
+            </a>
+          </p>
+        </div>
+      )}
+
+      {/* Honeypot field for spam protection - hidden from users */}
+      <input
+        type="text"
+        name="_gotcha"
+        style={{ display: "none" }}
+        tabIndex={-1}
+        autoComplete="off"
+      />
 
       {/* Name */}
       <div>
@@ -234,7 +263,7 @@ export function ContactForm({
         variant="green"
         size="lg"
         className="w-full"
-        disabled={submitStatus === "loading"}
+        disabled={submitStatus === "loading" || submitStatus === "rateLimit"}
       >
         {submitStatus === "loading" ? (
           <>
