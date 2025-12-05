@@ -21,9 +21,9 @@ export function Header() {
             <Image
               src="/images/logos/logo1.png"
               alt={siteConfig.name}
-              width={180}
-              height={60}
-              className="h-10 md:h-12 w-auto"
+              width={306}
+              height={102}
+              className="h-[68px] md:h-[82px] w-auto"
               priority
             />
           </Link>
