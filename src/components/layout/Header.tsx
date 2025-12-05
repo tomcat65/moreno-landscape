@@ -13,9 +13,9 @@ export function Header() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 bg-white shadow-md">
+    <header className="sticky top-0 z-10 bg-white shadow-md overflow-hidden">
       <Container>
-        <div className="flex items-center justify-between h-16 md:h-20">
+        <div className="flex items-center justify-between h-[72px] md:h-[88px] py-2">
           {/* Logo */}
           <Link href="/" className="flex-shrink-0">
             <Image
