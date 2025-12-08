@@ -16,7 +16,7 @@ const areaDetails: AreaInfo[] = [
   {
     name: "Katy",
     description: "Including all master-planned communities and established neighborhoods",
-    neighborhoods: ["Cinco Ranch", "Cross Creek Ranch", "Elyson", "Cane Island", "Jordan Ranch"],
+    neighborhoods: ["Cinco Ranch", "Cross Creek Ranch", "Elyson", "Cane Island", "Jordan Ranch", "Grand Lakes", "Morton Ranch", "Bellaterra"],
     isPrimary: true,
   },
   {
