@@ -12,20 +12,20 @@ interface BeforeAfterPair {
 
 const transformations: BeforeAfterPair[] = [
   {
-    before: "/images/portfolio/IMG_4865.webp",
-    after: "/images/portfolio/IMG_4869.webp",
+    before: "/images/portfolio/IMG_0793.webp",
+    after: "/images/portfolio/IMG_3101.webp",
     title: "Complete Lawn Renovation",
     location: "Cinco Ranch, TX",
   },
   {
-    before: "/images/portfolio/IMG_4871.webp",
-    after: "/images/portfolio/IMG_4873.webp",
+    before: "/images/portfolio/IMG_0791.webp",
+    after: "/images/portfolio/IMG_3100.webp",
     title: "Backyard Transformation",
     location: "Richmond, TX",
   },
   {
-    before: "/images/portfolio/IMG_4892.webp",
-    after: "/images/portfolio/IMG_4893.webp",
+    before: "/images/portfolio/IMG_3450.webp",
+    after: "/images/portfolio/IMG_5077.webp",
     title: "Garden Bed Cleanup",
     location: "Fulshear, TX",
   },

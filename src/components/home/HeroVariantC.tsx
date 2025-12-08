@@ -16,7 +16,7 @@ export function HeroVariantC() {
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/images/portfolio/IMG_4865.webp"
+          src="/images/portfolio/IMG_4882.webp"
           alt="Beautiful landscaped lawn"
           fill
           className="object-cover"

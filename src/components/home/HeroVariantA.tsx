@@ -113,11 +113,11 @@ export function HeroVariantA() {
             <div className="absolute -inset-4 bg-gradient-to-br from-brand-gold/20 to-brand-green-primary/20 rounded-2xl blur-xl" />
             <div className="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-white/10">
               <Image
-                src="/images/portfolio/IMG_4865.webp"
+                src="/images/portfolio/IMG_4882.webp"
                 alt="Beautiful landscaped lawn by Moreno Landscaping"
                 width={600}
-                height={500}
-                className="object-cover w-full h-[500px]"
+                height={600}
+                className="object-contain w-full h-[600px] bg-brand-green-dark/20"
                 priority
               />
               {/* Overlay with stats */}
