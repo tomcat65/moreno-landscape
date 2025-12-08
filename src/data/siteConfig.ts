@@ -3,7 +3,7 @@ export const siteConfig = {
   shortName: "Moreno Landscaping",
   phone: "832.718.0431",
   phoneHref: "tel:+18327180431",
-  email: "info@morenolandscaping.com",
+  email: "info@morenolandscaping.vip",
 
   // Service areas
   primaryAreas: ["Katy", "Richmond", "Fulshear"] as const,
