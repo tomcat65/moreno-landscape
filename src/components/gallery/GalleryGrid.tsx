@@ -49,11 +49,14 @@ export function GalleryGrid({
 
       {/* Image Grid */}
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        {displayImages.map((image, index) => (
+        {displayImages.map((image, index) => {
+          // Find the index in the full gallery array
+          const fullGalleryIndex = galleryImages.findIndex((img) => img.id === image.id);
+          return (
           <div
             key={image.id}
             className="relative aspect-square rounded-lg overflow-hidden group cursor-pointer"
-            onClick={() => onImageClick?.(index)}
+            onClick={() => onImageClick?.(fullGalleryIndex >= 0 ? fullGalleryIndex : index)}
           >
             <Image
               src={image.src}
@@ -68,7 +71,8 @@ export function GalleryGrid({
               </span>
             </div>
           </div>
-        ))}
+          );
+        })}
       </div>
 
       {/* Empty state */}
