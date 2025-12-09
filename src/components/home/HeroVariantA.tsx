@@ -1,13 +1,14 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Link from "next/link";
 import Image from "next/image";
 import { Phone, Star, Clock, Shield, ChevronDown } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { siteConfig } from "@/data/siteConfig";
 import { cn } from "@/lib/utils";
+import CTAButton from "@/components/CTAButton";
+import PhoneLink from "@/components/PhoneLink";
 
 /**
  * Hero Variant A: Dark & Bold with animations
@@ -76,18 +77,16 @@ export function HeroVariantA() {
 
             {/* CTAs */}
             <div className="flex flex-col sm:flex-row gap-4 mb-8">
-              <Link href="/contact">
-                <Button variant="gold" size="lg" className="group shadow-xl shadow-brand-gold/20 w-full sm:w-auto">
-                  Get FREE Estimate
-                  <ChevronDown className="w-5 h-5 ml-2 group-hover:translate-y-1 transition-transform" />
-                </Button>
-              </Link>
-              <a href={siteConfig.phoneHref}>
+              <CTAButton href="/contact" location="hero" variant="gold" size="lg" className="group shadow-xl shadow-brand-gold/20 w-full sm:w-auto">
+                Get FREE Estimate
+                <ChevronDown className="w-5 h-5 ml-2 group-hover:translate-y-1 transition-transform" />
+              </CTAButton>
+              <PhoneLink>
                 <Button variant="red" size="lg" className="gap-2 shadow-xl shadow-brand-red/20 w-full sm:w-auto">
                   <Phone className="w-5 h-5" />
                   {siteConfig.phone}
                 </Button>
-              </a>
+              </PhoneLink>
             </div>
 
             {/* Trust indicators */}

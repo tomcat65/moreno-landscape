@@ -4,6 +4,8 @@ import { Button } from "@/components/ui/Button";
 import { SeasonalBadge } from "@/components/ui/Badge";
 import type { Service } from "@/data/services";
 import { Check } from "lucide-react";
+import CTAButton from "@/components/CTAButton";
+import PhoneLink from "@/components/PhoneLink";
 
 interface ServiceCardProps {
   service: Service;
@@ -94,16 +96,14 @@ export function ServiceCard({ service, expanded = false }: ServiceCardProps) {
               <p className="text-sm text-gray-600 mb-4">
                 Get a free, no-obligation estimate for your property.
               </p>
-              <Link href="/contact">
-                <Button variant="green" className="w-full mb-3">
-                  Get Free Estimate
-                </Button>
-              </Link>
-              <a href="tel:+18327180431">
+              <CTAButton href="/contact" location="service_card" variant="green" className="w-full mb-3">
+                Get Free Estimate
+              </CTAButton>
+              <PhoneLink className="w-full">
                 <Button variant="outline" className="w-full">
                   Call 832.718.0431
                 </Button>
-              </a>
+              </PhoneLink>
             </div>
           </div>
         </div>

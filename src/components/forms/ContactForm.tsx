@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/Button";
 import { services } from "@/data/services";
 import { Loader2, CheckCircle, AlertCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { trackFormSubmit } from "@/lib/analytics";
 
 // Form validation schema
 const contactSchema = z.object({
@@ -62,6 +63,8 @@ export function ContactForm({
       });
 
       if (response.ok) {
+        // Track the lead generation
+        trackFormSubmit('contact_form', data.service);
         setSubmitStatus("success");
         reset();
       } else if (response.status === 429) {

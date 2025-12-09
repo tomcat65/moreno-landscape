@@ -5,9 +5,10 @@ import Link from "next/link";
 import Image from "next/image";
 import { Phone, Menu, X } from "lucide-react";
 import { Container } from "@/components/ui/Container";
-import { Button } from "@/components/ui/Button";
 import { siteConfig, navLinks } from "@/data/siteConfig";
 import { cn } from "@/lib/utils";
+import PhoneLink from "@/components/PhoneLink";
+import CTAButton from "@/components/CTAButton";
 
 export function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -43,18 +44,13 @@ export function Header() {
 
           {/* Phone CTA - Always visible */}
           <div className="flex items-center gap-4">
-            <a
-              href={siteConfig.phoneHref}
-              className="hidden sm:flex items-center gap-2 text-brand-red font-bold hover:underline"
-            >
+            <PhoneLink className="hidden sm:flex items-center gap-2 text-brand-red font-bold hover:underline">
               <Phone className="w-5 h-5" />
               {siteConfig.phone}
-            </a>
-            <Link href="/contact" className="hidden md:inline-flex">
-              <Button variant="gold" size="sm">
-                Free Estimate
-              </Button>
-            </Link>
+            </PhoneLink>
+            <CTAButton href="/contact" location="header" variant="gold" size="sm" className="hidden md:inline-flex">
+              Free Estimate
+            </CTAButton>
 
             {/* Mobile menu button */}
             <button
@@ -93,13 +89,10 @@ export function Header() {
               </Link>
             ))}
             <div className="px-6 py-4 border-t mt-2">
-              <a
-                href={siteConfig.phoneHref}
-                className="flex items-center gap-2 text-brand-red font-bold text-lg"
-              >
+              <PhoneLink className="flex items-center gap-2 text-brand-red font-bold text-lg">
                 <Phone className="w-5 h-5" />
                 {siteConfig.phone}
-              </a>
+              </PhoneLink>
               <p className="text-sm text-brand-green-primary mt-2 font-medium">
                 Se Habla Espanol
               </p>

@@ -4,6 +4,8 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { FloatingCallButton } from "@/components/layout/FloatingCallButton";
 import { siteConfig } from "@/data/siteConfig";
+import { GoogleAnalytics } from "@next/third-parties/google";
+import Analytics from "@/components/Analytics";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -72,7 +74,10 @@ export default function RootLayout({
         <Footer />
 
         <FloatingCallButton />
+
+        <Analytics />
       </body>
+      <GoogleAnalytics gaId="G-BLTMR50BSM" />
     </html>
   );
 }

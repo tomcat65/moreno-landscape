@@ -1,8 +1,9 @@
-import Link from "next/link";
 import { Phone, Check } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { siteConfig } from "@/data/siteConfig";
+import CTAButton from "@/components/CTAButton";
+import PhoneLink from "@/components/PhoneLink";
 
 /**
  * Hero Variant B: Light & Clean
@@ -54,17 +55,15 @@ export function HeroVariantB() {
 
             {/* CTAs */}
             <div className="flex flex-col sm:flex-row gap-4">
-              <Link href="/contact">
-                <Button variant="green" size="lg">
-                  Get Free Estimate
-                </Button>
-              </Link>
-              <a href={siteConfig.phoneHref}>
+              <CTAButton href="/contact" location="hero" variant="green" size="lg">
+                Get Free Estimate
+              </CTAButton>
+              <PhoneLink>
                 <Button variant="outline" size="lg" className="gap-2">
                   <Phone className="w-5 h-5" />
                   {siteConfig.phone}
                 </Button>
-              </a>
+              </PhoneLink>
             </div>
           </div>
 

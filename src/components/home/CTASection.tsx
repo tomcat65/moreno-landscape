@@ -1,8 +1,9 @@
-import Link from "next/link";
 import { Phone, MapPin, Calendar } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { siteConfig } from "@/data/siteConfig";
+import CTAButton from "@/components/CTAButton";
+import PhoneLink from "@/components/PhoneLink";
 
 export function CTASection() {
   return (
@@ -25,17 +26,15 @@ export function CTASection() {
 
           {/* CTAs */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-            <Link href="/contact">
-              <Button variant="green" size="lg">
-                Request Free Estimate
-              </Button>
-            </Link>
-            <a href={siteConfig.phoneHref}>
+            <CTAButton href="/contact" location="cta_section" variant="green" size="lg">
+              Request Free Estimate
+            </CTAButton>
+            <PhoneLink>
               <Button variant="red" size="lg" className="gap-2">
                 <Phone className="w-5 h-5" />
                 Call {siteConfig.phone}
               </Button>
-            </a>
+            </PhoneLink>
           </div>
 
           {/* Info cards */}

@@ -1,10 +1,11 @@
-import Link from "next/link";
 import Image from "next/image";
 import { Phone } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { FreeEstimateBadge, SeHablaEspanolBadge } from "@/components/ui/Badge";
 import { siteConfig } from "@/data/siteConfig";
+import CTAButton from "@/components/CTAButton";
+import PhoneLink from "@/components/PhoneLink";
 
 /**
  * Hero Variant C: Image Background
@@ -51,12 +52,10 @@ export function HeroVariantC() {
 
           {/* CTAs */}
           <div className="flex flex-col sm:flex-row gap-4 mb-8">
-            <Link href="/contact">
-              <Button variant="gold" size="lg">
-                Get Your Free Estimate
-              </Button>
-            </Link>
-            <a href={siteConfig.phoneHref}>
+            <CTAButton href="/contact" location="hero" variant="gold" size="lg">
+              Get Your Free Estimate
+            </CTAButton>
+            <PhoneLink>
               <Button
                 variant="red"
                 size="lg"
@@ -65,7 +64,7 @@ export function HeroVariantC() {
                 <Phone className="w-5 h-5" />
                 Call Now: {siteConfig.phone}
               </Button>
-            </a>
+            </PhoneLink>
           </div>
 
           {/* Trust signals */}

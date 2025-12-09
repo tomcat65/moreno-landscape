@@ -27,7 +27,7 @@ const transformations: BeforeAfterPair[] = [
     before: "/images/portfolio/IMG_3450.webp",
     after: "/images/portfolio/IMG_5077.webp",
     title: "Fence Maintenance",
-    location: "Fulshear, TX",
+    location: "Grand Lakes, TX",
   },
 ];
 
