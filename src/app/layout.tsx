@@ -47,6 +47,7 @@ export const metadata: Metadata = {
     "msapplication-TileImage": "/mstile-144x144.png",
     "msapplication-config": "/browserconfig.xml",
     "theme-color": "#1a5d2e",
+    "google-site-verification": "MtzQRNnHdxWgDyuuAp3EZGmDqoqk9vNSpRYOMLheF-M",
   },
 };
 
