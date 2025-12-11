@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useCallback } from "react";
+import { useState, useRef, useCallback, useEffect } from "react";
 import Image from "next/image";
 
 interface BeforeAfterPair {
@@ -35,24 +35,59 @@ function SingleBeforeAfter({ pair }: { pair: BeforeAfterPair }) {
   const [sliderPosition, setSliderPosition] = useState(50);
   const [isDragging, setIsDragging] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
+  const rectRef = useRef<DOMRect | null>(null);
+  const rafIdRef = useRef<number | null>(null);
+
+  // Cache rect to avoid repeated DOM reads during drag
+  const updateRect = useCallback(() => {
+    if (containerRef.current) {
+      rectRef.current = containerRef.current.getBoundingClientRect();
+    }
+  }, []);
 
   const handleMove = useCallback(
     (clientX: number) => {
       if (!containerRef.current) return;
+      
+      // Cancel any pending animation frame
+      if (rafIdRef.current !== null) {
+        cancelAnimationFrame(rafIdRef.current);
+      }
+      
       // Batch DOM reads to avoid forced reflow
-      // Use requestAnimationFrame to ensure layout is stable before reading
-      requestAnimationFrame(() => {
+      rafIdRef.current = requestAnimationFrame(() => {
         if (!containerRef.current) return;
-        // Read layout properties in a single batch
-        const rect = containerRef.current.getBoundingClientRect();
+        
+        // Use cached rect if available and recent, otherwise read fresh
+        const rect = rectRef.current || containerRef.current.getBoundingClientRect();
         const x = clientX - rect.left;
         const percentage = Math.min(Math.max((x / rect.width) * 100, 0), 100);
+        
+        // Update cached rect periodically (every 10 frames) to account for resize
+        if (Math.random() < 0.1) {
+          updateRect();
+        }
+        
         // Write to state in the same frame
         setSliderPosition(percentage);
+        rafIdRef.current = null;
       });
     },
-    []
+    [updateRect]
   );
+  
+  // Update rect on mount and resize
+  useEffect(() => {
+    updateRect();
+    const handleResize = () => updateRect();
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      if (rafIdRef.current !== null) {
+        cancelAnimationFrame(rafIdRef.current);
+      }
+    };
+  }, [updateRect]);
 
   const handleMouseMove = useCallback(
     (e: React.MouseEvent) => {
