@@ -28,6 +28,11 @@ const nextConfig = {
 
   // Optimize font loading
   optimizeFonts: true,
+
+  // Optimize CSS loading - Next.js automatically optimizes CSS
+  // CSS is automatically code-split and loaded on demand
+  // For further optimization, consider using CSS modules or styled-components
+  // which Next.js handles more efficiently than global CSS
 };
 
 export default nextConfig;

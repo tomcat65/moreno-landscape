@@ -39,10 +39,17 @@ function SingleBeforeAfter({ pair }: { pair: BeforeAfterPair }) {
   const handleMove = useCallback(
     (clientX: number) => {
       if (!containerRef.current) return;
-      const rect = containerRef.current.getBoundingClientRect();
-      const x = clientX - rect.left;
-      const percentage = Math.min(Math.max((x / rect.width) * 100, 0), 100);
-      setSliderPosition(percentage);
+      // Batch DOM reads to avoid forced reflow
+      // Use requestAnimationFrame to ensure layout is stable before reading
+      requestAnimationFrame(() => {
+        if (!containerRef.current) return;
+        // Read layout properties in a single batch
+        const rect = containerRef.current.getBoundingClientRect();
+        const x = clientX - rect.left;
+        const percentage = Math.min(Math.max((x / rect.width) * 100, 0), 100);
+        // Write to state in the same frame
+        setSliderPosition(percentage);
+      });
     },
     []
   );
