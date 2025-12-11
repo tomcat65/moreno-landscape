@@ -27,36 +27,25 @@ export function DeferredGoogleAnalytics() {
       // Wait for page to be fully interactive
       if (document.readyState === 'complete') {
         // Use requestIdleCallback with longer timeout to defer more aggressively
-        // Only load if user is actually idle (not scrolling/interacting)
         if ('requestIdleCallback' in window) {
           requestIdleCallback(
-            () => {
-              // Double-check that page is still idle before loading
-              if (document.readyState === 'complete') {
-                setShouldLoad(true);
-              }
-            },
-            { timeout: 10000 } // Wait up to 10 seconds for idle (more aggressive)
+            () => setShouldLoad(true),
+            { timeout: 5000 } // Wait up to 5 seconds for idle
           );
         } else {
-          // Fallback: wait 5 seconds after page load
-          setTimeout(() => setShouldLoad(true), 5000);
+          // Fallback: wait 3 seconds after page load
+          setTimeout(() => setShouldLoad(true), 3000);
         }
       } else {
         // Wait for page load, then defer
         window.addEventListener('load', () => {
           if ('requestIdleCallback' in window) {
             requestIdleCallback(
-              () => {
-                // Double-check that page is still idle before loading
-                if (document.readyState === 'complete') {
-                  setShouldLoad(true);
-                }
-              },
-              { timeout: 10000 } // Wait up to 10 seconds for idle (more aggressive)
+              () => setShouldLoad(true),
+              { timeout: 5000 }
             );
           } else {
-            setTimeout(() => setShouldLoad(true), 5000);
+            setTimeout(() => setShouldLoad(true), 3000);
           }
         }, { once: true });
       }
