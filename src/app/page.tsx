@@ -1,9 +1,18 @@
 import { Hero } from "@/components/home/Hero";
-import { SeasonalBanner } from "@/components/home/SeasonalBanner";
-import { TrustBadges } from "@/components/home/TrustBadges";
-import { ServiceGrid } from "@/components/home/ServiceGrid";
 import dynamic from "next/dynamic";
 import type { HeroVariant } from "@/types";
+
+// Lazy load components to reduce initial bundle size
+// Even above-the-fold components can be lazy loaded with proper loading states
+const SeasonalBanner = dynamic(() => import("@/components/home/SeasonalBanner").then(mod => ({ default: mod.SeasonalBanner })), {
+  loading: () => <div className="h-20" />, // Minimal height to prevent layout shift
+});
+const TrustBadges = dynamic(() => import("@/components/home/TrustBadges").then(mod => ({ default: mod.TrustBadges })), {
+  loading: () => <div className="h-32" />,
+});
+const ServiceGrid = dynamic(() => import("@/components/home/ServiceGrid").then(mod => ({ default: mod.ServiceGrid })), {
+  loading: () => <div className="h-96" />,
+});
 
 // Lazy load below-the-fold components to reduce initial bundle size
 const BeforeAfterSlider = dynamic(() => import("@/components/home/BeforeAfterSlider").then(mod => ({ default: mod.BeforeAfterSlider })), {

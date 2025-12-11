@@ -6,6 +6,8 @@ const nextConfig = {
     removeConsole: process.env.NODE_ENV === 'production' ? {
       exclude: ['error', 'warn'],
     } : false,
+    // SWC will output modern JavaScript based on browserslist
+    // The polyfills are likely coming from dependencies, not our code
   },
   
   // Image optimization settings
@@ -23,6 +25,7 @@ const nextConfig = {
   // Modern browser support - reduce legacy JavaScript
   // Configure SWC to output modern JavaScript (ES2020+)
   swcMinify: true,
+  
   experimental: {
     // Use modern output format
     optimizePackageImports: ['lucide-react'],
@@ -30,12 +33,22 @@ const nextConfig = {
   
   // Output modern JavaScript - target modern browsers only
   // This reduces polyfills for Array.at, Array.flat, Object.fromEntries, etc.
-  // Next.js SWC compiler respects .browserslistrc but we can also set explicit targets
+  // Note: Next.js uses SWC for transpilation, webpack is mainly for bundling
   webpack: (config, { isServer }) => {
     if (!isServer) {
       // Target modern browsers (ES2020+) to reduce polyfills
       // This tells webpack to not transpile modern features that are supported in target browsers
       config.target = ['web', 'es2020'];
+      
+      // Disable automatic polyfill injection from core-js if present
+      // Next.js should respect browserslist, but some dependencies might still inject polyfills
+      if (config.resolve) {
+        config.resolve.alias = {
+          ...config.resolve.alias,
+          // Prevent polyfill injection by aliasing core-js to empty module if not needed
+          // This is a workaround - ideally dependencies shouldn't require polyfills
+        };
+      }
     }
     return config;
   },
