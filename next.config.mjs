@@ -25,6 +25,9 @@ const nextConfig = {
     // Use modern output format
     optimizePackageImports: ['lucide-react'],
   },
+
+  // Optimize font loading
+  optimizeFonts: true,
 };
 
 export default nextConfig;

@@ -63,7 +63,7 @@ export function HeroVariantA() {
             {/* Main headline with animated gradient */}
             <h1 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-[1.1]">
               <span className="block">Professional Lawn Care,</span>
-              <span className="block bg-gradient-to-r from-brand-gold via-yellow-300 to-brand-gold bg-clip-text text-transparent animate-shimmer bg-[length:200%_auto]">
+              <span className="block bg-gradient-to-r from-brand-gold via-yellow-300 to-brand-gold bg-clip-text text-transparent animate-shimmer relative">
                 Personal Service
               </span>
             </h1>

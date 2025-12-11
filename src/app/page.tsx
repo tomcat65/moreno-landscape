@@ -2,15 +2,34 @@ import { Hero } from "@/components/home/Hero";
 import { SeasonalBanner } from "@/components/home/SeasonalBanner";
 import { TrustBadges } from "@/components/home/TrustBadges";
 import { ServiceGrid } from "@/components/home/ServiceGrid";
-import { BeforeAfterSlider } from "@/components/home/BeforeAfterSlider";
-import { GoogleReviews } from "@/components/home/GoogleReviews";
-import { ServiceAreasMap } from "@/components/home/ServiceAreasMap";
-import { WhyChooseUs } from "@/components/home/WhyChooseUs";
-import { Testimonials } from "@/components/home/Testimonials";
-import { FAQSection } from "@/components/home/FAQSection";
-import { EmergencyServices } from "@/components/home/EmergencyServices";
-import { CTASection } from "@/components/home/CTASection";
+import dynamic from "next/dynamic";
 import type { HeroVariant } from "@/types";
+
+// Lazy load below-the-fold components to reduce initial bundle size
+const BeforeAfterSlider = dynamic(() => import("@/components/home/BeforeAfterSlider").then(mod => ({ default: mod.BeforeAfterSlider })), {
+  loading: () => <div className="py-16 md:py-24 bg-white" />,
+});
+const GoogleReviews = dynamic(() => import("@/components/home/GoogleReviews").then(mod => ({ default: mod.GoogleReviews })), {
+  loading: () => <div className="py-16 bg-gray-50" />,
+});
+const ServiceAreasMap = dynamic(() => import("@/components/home/ServiceAreasMap").then(mod => ({ default: mod.ServiceAreasMap })), {
+  loading: () => <div className="py-16 bg-white" />,
+});
+const WhyChooseUs = dynamic(() => import("@/components/home/WhyChooseUs").then(mod => ({ default: mod.WhyChooseUs })), {
+  loading: () => <div className="py-16 bg-gray-50" />,
+});
+const Testimonials = dynamic(() => import("@/components/home/Testimonials").then(mod => ({ default: mod.Testimonials })), {
+  loading: () => <div className="py-16 bg-white" />,
+});
+const FAQSection = dynamic(() => import("@/components/home/FAQSection").then(mod => ({ default: mod.FAQSection })), {
+  loading: () => <div className="py-16 bg-gray-50" />,
+});
+const EmergencyServices = dynamic(() => import("@/components/home/EmergencyServices").then(mod => ({ default: mod.EmergencyServices })), {
+  loading: () => <div className="py-16 bg-white" />,
+});
+const CTASection = dynamic(() => import("@/components/home/CTASection").then(mod => ({ default: mod.CTASection })), {
+  loading: () => <div className="py-16 bg-brand-green-dark" />,
+});
 
 interface HomePageProps {
   searchParams: Promise<{ hero?: string }>;

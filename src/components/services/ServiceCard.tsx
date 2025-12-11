@@ -73,9 +73,9 @@ export function ServiceCard({ service, expanded = false }: ServiceCardProps) {
 
             {/* What's included */}
             <div>
-              <h4 className="font-heading font-bold text-brand-green-dark mb-3">
+              <h3 className="font-heading font-bold text-brand-green-dark mb-3">
                 What&apos;s Included:
-              </h4>
+              </h3>
               <ul className="space-y-2">
                 {service.includes.map((item) => (
                   <li key={item} className="flex items-start gap-2">

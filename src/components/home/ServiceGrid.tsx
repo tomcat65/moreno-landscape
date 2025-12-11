@@ -39,9 +39,10 @@ export function ServiceGrid() {
                   <Link
                     href={`/services#${service.slug}`}
                     className="inline-flex items-center gap-1 text-sm font-medium text-brand-green-primary hover:text-brand-green-dark transition-colors"
+                    aria-label={`Learn more about ${service.name} service`}
                   >
-                    Learn More
-                    <ArrowRight className="w-4 h-4" />
+                    Learn More About {service.name}
+                    <ArrowRight className="w-4 h-4" aria-hidden="true" />
                   </Link>
                 </CardContent>
               </Card>

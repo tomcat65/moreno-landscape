@@ -135,9 +135,9 @@ function SingleBeforeAfter({ pair }: { pair: BeforeAfterPair }) {
 
       {/* Caption */}
       <div className="mt-4 text-center">
-        <h4 className="font-heading font-bold text-brand-green-dark">
+        <h3 className="font-heading font-bold text-brand-green-dark">
           {pair.title}
-        </h4>
+        </h3>
         <p className="text-sm text-gray-500">{pair.location}</p>
       </div>
     </div>

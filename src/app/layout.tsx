@@ -4,8 +4,9 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { FloatingCallButton } from "@/components/layout/FloatingCallButton";
 import { siteConfig } from "@/data/siteConfig";
-import { GoogleAnalytics } from "@next/third-parties/google";
 import Analytics from "@/components/Analytics";
+import { DeferredGoogleAnalytics } from "@/components/DeferredGoogleAnalytics";
+import { StructuredData } from "@/components/StructuredData";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -59,22 +60,32 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${montserrat.variable} ${inter.variable}`}>
       <head>
-        {/* Preconnect to critical origins */}
-        <link rel="preconnect" href="https://www.googletagmanager.com" />
-        {/* Preload critical CSS */}
-        <link
-          rel="preload"
-          href="/fonts/montserrat-variable.woff2"
-          as="font"
-          type="font/woff2"
-          crossOrigin="anonymous"
+        {/* Trusted Types policy - must load before any scripts */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              if (typeof window !== 'undefined' && 'trustedTypes' in window) {
+                try {
+                  window.trustedTypes?.createPolicy('default', {
+                    createHTML: (string) => string,
+                    createScript: (string) => string,
+                    createScriptURL: (string) => string,
+                  });
+                } catch (e) {
+                  console.warn('Trusted Types policy creation failed:', e);
+                }
+              }
+            `,
+          }}
         />
+        {/* Preconnect to critical origins - DNS prefetch for GA (non-blocking) */}
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+        {/* Preload LCP image for faster rendering */}
         <link
           rel="preload"
-          href="/fonts/inter-variable.woff2"
-          as="font"
-          type="font/woff2"
-          crossOrigin="anonymous"
+          href="/images/portfolio/IMG_4882.webp"
+          as="image"
+          fetchPriority="high"
         />
       </head>
       <body>
@@ -96,8 +107,9 @@ export default function RootLayout({
         <FloatingCallButton />
 
         <Analytics />
+        <DeferredGoogleAnalytics />
+        <StructuredData />
       </body>
-      <GoogleAnalytics gaId="G-BLTMR50BSM" />
     </html>
   );
 }

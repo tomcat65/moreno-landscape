@@ -84,9 +84,9 @@ export function TrustBadges() {
                 >
                   <Icon className="w-6 h-6 text-white" />
                 </div>
-                <h4 className="font-heading font-bold text-brand-green-dark text-sm mb-1">
+                <h3 className="font-heading font-bold text-brand-green-dark text-sm mb-1">
                   {badge.title}
-                </h4>
+                </h3>
                 <p className="text-xs text-gray-500">{badge.description}</p>
               </div>
             );

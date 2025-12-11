@@ -121,11 +121,15 @@ export function Testimonials() {
                 <button
                   key={index}
                   onClick={() => setCurrentIndex(index)}
-                  className={`w-2 h-2 rounded-full transition-colors ${
-                    index === currentIndex ? "bg-brand-gold" : "bg-white/30"
+                  className={`w-11 h-11 rounded-full transition-colors flex items-center justify-center p-0 ${
+                    index === currentIndex ? "bg-brand-gold/20" : "bg-white/10 hover:bg-white/20"
                   }`}
                   aria-label={`Go to testimonial ${index + 1}`}
-                />
+                >
+                  <span className={`w-2 h-2 rounded-full ${
+                    index === currentIndex ? "bg-brand-gold" : "bg-white/30"
+                  }`} />
+                </button>
               ))}
             </div>
 

@@ -38,8 +38,10 @@ export default function CTAButton({
     trackCTAClick(buttonText, location);
   };
 
+  const buttonText = extractText(children);
+  
   return (
-    <Link href={href} onClick={handleClick}>
+    <Link href={href} onClick={handleClick} aria-label={buttonText || 'Get free estimate'}>
       <Button variant={variant} size={size} className={className}>
         {children}
       </Button>

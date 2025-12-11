@@ -10,10 +10,24 @@ export const GA_MEASUREMENT_ID = 'G-BLTMR50BSM';
 
 // Track page views (for client-side navigation)
 export const pageview = (url: string) => {
-  if (typeof window.gtag !== 'undefined') {
-    window.gtag('config', GA_MEASUREMENT_ID, {
-      page_path: url,
-    });
+  // Wait for gtag to be available (deferred loading)
+  if (typeof window !== 'undefined') {
+    if (typeof window.gtag !== 'undefined') {
+      window.gtag('config', GA_MEASUREMENT_ID, {
+        page_path: url,
+      });
+    } else {
+      // Queue the pageview if gtag isn't loaded yet
+      // This will be processed when GA loads
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        'gtag.config': {
+          [GA_MEASUREMENT_ID]: {
+            page_path: url,
+          },
+        },
+      });
+    }
   }
 };
 

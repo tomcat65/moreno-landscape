@@ -105,14 +105,14 @@ export function ServiceAreasMap() {
                         <MapPin className="w-5 h-5" />
                       </div>
                       <div>
-                        <h4 className="font-heading font-bold text-brand-green-dark">
+                        <div className="font-heading font-bold text-brand-green-dark">
                           {area.name}
                           {area.isPrimary && (
                             <span className="ml-2 text-xs bg-brand-gold text-brand-green-dark px-2 py-0.5 rounded-full">
                               Primary
                             </span>
                           )}
-                        </h4>
+                        </div>
                         <p className="text-xs text-gray-500 mt-0.5">
                           {area.neighborhoods.length} neighborhoods
                         </p>

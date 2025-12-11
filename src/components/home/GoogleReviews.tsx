@@ -196,13 +196,13 @@ export function GoogleReviews() {
                       {review.name.charAt(0)}
                     </div>
                     <div className="flex-1">
-                      <h4 className="font-heading font-bold text-brand-green-dark">
+                      <div className="font-heading font-bold text-brand-green-dark">
                         {review.name}
-                      </h4>
+                      </div>
                       <p className="text-sm text-gray-500">{review.location}, TX</p>
                       <div className="flex items-center gap-2 mt-1">
                         <StarRating rating={review.rating} />
-                        <span className="text-xs text-gray-400">{review.date}</span>
+                        <span className="text-xs text-gray-500">{review.date}</span>
                       </div>
                     </div>
                     {review.service && (
@@ -231,13 +231,20 @@ export function GoogleReviews() {
                   setCurrentIndex(index);
                 }}
                 className={cn(
-                  "w-2 h-2 rounded-full transition-all",
+                  "w-11 h-11 rounded-full transition-all flex items-center justify-center p-0",
                   index === currentIndex
-                    ? "bg-brand-green-primary w-6"
+                    ? "bg-brand-green-primary"
                     : "bg-gray-300 hover:bg-gray-400"
                 )}
                 aria-label={`Go to review ${index + 1}`}
-              />
+              >
+                <span className={cn(
+                  "w-2 h-2 rounded-full",
+                  index === currentIndex
+                    ? "bg-white w-6"
+                    : "bg-gray-600"
+                )} />
+              </button>
             ))}
           </div>
         </div>

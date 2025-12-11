@@ -75,8 +75,8 @@ export function EmergencyServices() {
                       <Icon className="w-6 h-6 text-brand-gold" />
                     </div>
                     <div>
-                      <h4 className="font-semibold text-white">{service.title}</h4>
-                      <p className="text-gray-400 text-sm">{service.description}</p>
+                      <h3 className="font-semibold text-white">{service.title}</h3>
+                      <p className="text-gray-200 text-sm">{service.description}</p>
                     </div>
                   </div>
                 );
