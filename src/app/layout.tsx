@@ -80,13 +80,7 @@ export default function RootLayout({
         />
         {/* Preconnect to critical origins - DNS prefetch for GA (non-blocking) */}
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
-        {/* Preload LCP image for faster rendering */}
-        <link
-          rel="preload"
-          href="/images/portfolio/IMG_4882.webp"
-          as="image"
-          fetchPriority="high"
-        />
+        {/* Note: LCP image preload removed - Next.js Image component handles optimization automatically */}
       </head>
       <body>
         {/* Skip to main content for accessibility */}

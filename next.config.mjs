@@ -21,9 +21,23 @@ const nextConfig = {
   },
 
   // Modern browser support - reduce legacy JavaScript
+  // Configure SWC to output modern JavaScript (ES2020+)
+  swcMinify: true,
   experimental: {
     // Use modern output format
     optimizePackageImports: ['lucide-react'],
+  },
+  
+  // Output modern JavaScript - target modern browsers only
+  // This reduces polyfills for Array.at, Array.flat, Object.fromEntries, etc.
+  // Next.js SWC compiler respects .browserslistrc but we can also set explicit targets
+  webpack: (config, { isServer }) => {
+    if (!isServer) {
+      // Target modern browsers (ES2020+) to reduce polyfills
+      // This tells webpack to not transpile modern features that are supported in target browsers
+      config.target = ['web', 'es2020'];
+    }
+    return config;
   },
 
   // Optimize font loading

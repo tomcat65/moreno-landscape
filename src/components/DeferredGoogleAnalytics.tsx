@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Script from 'next/script';
 
 declare global {
@@ -16,21 +16,51 @@ declare global {
  * Uses requestIdleCallback to defer until browser is idle
  */
 export function DeferredGoogleAnalytics() {
+  const [shouldLoad, setShouldLoad] = useState(false);
+
   useEffect(() => {
-    // Only load GA when browser is idle (after page is fully interactive)
+    // Defer GA loading until after page is fully interactive and user is idle
+    // This reduces main-thread blocking and unused JavaScript
     const loadGA = () => {
-      if (typeof window !== 'undefined' && 'requestIdleCallback' in window) {
-        requestIdleCallback(() => {
-          // Script will load via Script component below
-        }, { timeout: 3000 });
+      if (typeof window === 'undefined') return;
+      
+      // Wait for page to be fully interactive
+      if (document.readyState === 'complete') {
+        // Use requestIdleCallback with longer timeout to defer more aggressively
+        if ('requestIdleCallback' in window) {
+          requestIdleCallback(
+            () => setShouldLoad(true),
+            { timeout: 5000 } // Wait up to 5 seconds for idle
+          );
+        } else {
+          // Fallback: wait 3 seconds after page load
+          setTimeout(() => setShouldLoad(true), 3000);
+        }
+      } else {
+        // Wait for page load, then defer
+        window.addEventListener('load', () => {
+          if ('requestIdleCallback' in window) {
+            requestIdleCallback(
+              () => setShouldLoad(true),
+              { timeout: 5000 }
+            );
+          } else {
+            setTimeout(() => setShouldLoad(true), 3000);
+          }
+        }, { once: true });
       }
     };
+    
     loadGA();
   }, []);
 
+  if (!shouldLoad) {
+    return null;
+  }
+
   return (
     <>
-      {/* Load GA script after page is idle (non-blocking, reduces unused code) */}
+      {/* Load GA script only after user is idle (non-blocking, reduces unused code) */}
       <Script
         id="google-analytics-loader"
         strategy="lazyOnload"

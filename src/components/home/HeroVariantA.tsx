@@ -111,17 +111,17 @@ export function HeroVariantA() {
             {/* Decorative frame */}
             <div className="absolute -inset-4 bg-gradient-to-br from-brand-gold/20 to-brand-green-primary/20 rounded-2xl blur-xl" />
             <div className="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-white/10">
-              <Image
-                src="/images/portfolio/IMG_4882.webp"
-                alt="Beautiful landscaped lawn by Moreno Landscaping"
-                width={600}
-                height={600}
-                className="object-contain w-full h-[600px] bg-brand-green-dark/20"
-                priority
-                fetchPriority="high"
-                sizes="(max-width: 1024px) 0px, 600px"
-                quality={85}
-              />
+                      <Image
+                        src="/images/portfolio/IMG_4882.webp"
+                        alt="Beautiful landscaped lawn by Moreno Landscaping"
+                        width={600}
+                        height={600}
+                        className="object-contain w-full h-[600px] bg-brand-green-dark/20"
+                        priority
+                        fetchPriority="high"
+                        sizes="(max-width: 1024px) 0px, 600px"
+                        quality={70}
+                      />
               {/* Overlay with stats */}
               <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent p-6">
                 <div className="flex justify-around text-white text-center">

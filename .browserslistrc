@@ -1,7 +1,13 @@
 # Modern browsers only - reduces legacy JavaScript polyfills
-# Targets browsers with >0.5% market share and last 2 versions
+# Targets browsers with ES2020+ support to avoid polyfills for:
+# Array.at, Array.flat, Array.flatMap, Object.fromEntries, Object.hasOwn, String.trimStart/trimEnd
 > 0.5%
 last 2 versions
 not dead
 not IE 11
+# Explicitly target browsers that support ES2020 features
+Chrome >= 92
+Firefox >= 90
+Safari >= 14.1
+Edge >= 92
 
