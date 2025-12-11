@@ -58,6 +58,25 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${montserrat.variable} ${inter.variable}`}>
+      <head>
+        {/* Preconnect to critical origins */}
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
+        {/* Preload critical CSS */}
+        <link
+          rel="preload"
+          href="/fonts/montserrat-variable.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preload"
+          href="/fonts/inter-variable.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
+      </head>
       <body>
         {/* Skip to main content for accessibility */}
         <a

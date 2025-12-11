@@ -118,6 +118,9 @@ export function HeroVariantA() {
                 height={600}
                 className="object-contain w-full h-[600px] bg-brand-green-dark/20"
                 priority
+                fetchPriority="high"
+                sizes="(max-width: 1024px) 0px, 600px"
+                quality={85}
               />
               {/* Overlay with stats */}
               <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent p-6">

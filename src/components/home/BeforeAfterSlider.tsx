@@ -83,6 +83,9 @@ function SingleBeforeAfter({ pair }: { pair: BeforeAfterPair }) {
             alt={`After: ${pair.title}`}
             fill
             className="object-cover"
+            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            quality={80}
+            loading="lazy"
           />
           <div className="absolute bottom-4 right-4 bg-brand-green-primary text-white px-3 py-1 rounded-full text-sm font-semibold">
             After
@@ -100,6 +103,9 @@ function SingleBeforeAfter({ pair }: { pair: BeforeAfterPair }) {
               alt={`Before: ${pair.title}`}
               fill
               className="object-cover"
+              sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              quality={80}
+              loading="lazy"
             />
           </div>
           <div className="absolute bottom-4 left-4 bg-gray-800 text-white px-3 py-1 rounded-full text-sm font-semibold">

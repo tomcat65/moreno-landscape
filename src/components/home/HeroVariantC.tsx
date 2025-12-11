@@ -22,6 +22,9 @@ export function HeroVariantC() {
           fill
           className="object-cover"
           priority
+          fetchPriority="high"
+          sizes="100vw"
+          quality={85}
         />
         {/* Dark overlay */}
         <div className="absolute inset-0 bg-brand-green-dark/80" />
