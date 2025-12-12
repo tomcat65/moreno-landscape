@@ -40,14 +40,25 @@ const nextConfig = {
       // This tells webpack to not transpile modern features that are supported in target browsers
       config.target = ['web', 'es2020'];
       
-      // Disable automatic polyfill injection from core-js if present
-      // Next.js should respect browserslist, but some dependencies might still inject polyfills
+      // Aggressively exclude polyfills for ES2020+ features
+      // These features are natively supported in our target browsers
       if (config.resolve) {
         config.resolve.alias = {
           ...config.resolve.alias,
-          // Prevent polyfill injection by aliasing core-js to empty module if not needed
-          // This is a workaround - ideally dependencies shouldn't require polyfills
+          // Exclude core-js polyfills for ES2020+ features
+          'core-js/modules/es.array.at': false,
+          'core-js/modules/es.array.flat': false,
+          'core-js/modules/es.array.flat-map': false,
+          'core-js/modules/es.object.from-entries': false,
+          'core-js/modules/es.object.has-own': false,
+          'core-js/modules/es.string.trim-start': false,
+          'core-js/modules/es.string.trim-end': false,
         };
+      }
+      
+      // Configure webpack to not include polyfills for features that are natively supported
+      if (config.optimization) {
+        config.optimization.usedExports = true;
       }
     }
     return config;
